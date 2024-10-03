@@ -19,7 +19,7 @@ class Message(BaseModel):
     model: str  # New 'model' field to be sent in the JSON body
 
 @app.post("/message")
-async def receive_message(msg: Message, request: Request, token: str = Header(None)):
+async def receive_message(msg: Message, token: str = Header(None)):
     # Log the message and model received
     print(f"Received message: {msg.message}")
     print(f"Received model: {msg.model}")
