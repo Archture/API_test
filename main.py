@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, Header
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from typing import Optional
 
 app = FastAPI()
 
