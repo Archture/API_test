@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request, Header
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional
 
 app = FastAPI()
 
@@ -18,18 +17,16 @@ app.add_middleware(
 class Message(BaseModel):
     message: str
     model: str  # New 'model' field to be sent in the JSON body
+    ken: str
 
 @app.post("/message")
-async def receive_message(msg: Message, authorization: Optional[str] = Header(None)):
+async def receive_message(msg: Message):
     # Log the message and model received
     print(f"Received message: {msg.message}")
     print(f"Received model: {msg.model}")
 
-    # Extract the additional token from the headers
-    print(f"Received token: {authorization}")
-
     # For the sake of this example, the response will return the message and model
-    response_content = {"message": msg.message, "model": {token}}
+    response_content = {"message": msg.message, "ken": msg.ken}
     print(f"Sent response: {response_content}")
 
     return response_content
