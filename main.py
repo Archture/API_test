@@ -28,7 +28,7 @@ async def receive_message(msg: Message, token: str = Header(None)):
     print(f"Received token: {token}")
 
     # For the sake of this example, the response will return the message and model
-    response_content = {"message": msg.message, "model": msg.model}
+    response_content = {"message": msg.message, "model": {token}}
     print(f"Sent response: {response_content}")
 
     return response_content
